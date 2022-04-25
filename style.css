@@ -22,12 +22,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
+  margin-top: .5em;
 }
 
 .hour {
@@ -70,8 +65,11 @@ body {
   min-height: 6em;
 }   
 
-.userInput {
+.user-input {
   height: 6em;
-  width: 50vw;
-  padding: .5em;
+  width: 35vw;
+  padding: 1em;
+  border: 1px solid black;
+  text-align: left;
+  margin-top: 1em;
 }
