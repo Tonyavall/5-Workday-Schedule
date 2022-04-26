@@ -84,6 +84,7 @@ let militaryHour = parseInt(grabCurrentHour.slice(0, 2));
 switch (grabCurrentHour) {
     case '12 am':
         militaryHour = 0;
+        console.log('It is currently ' + militaryHour + ' hours')
         break;
     case '1 am':
     case '2 am':
@@ -112,6 +113,7 @@ switch (grabCurrentHour) {
     case '11 pm':
     case '12 pm':
         militaryHour += 12;
+        console.log('It is currently ' + militaryHour + ' hours')
         break;
 }
 
