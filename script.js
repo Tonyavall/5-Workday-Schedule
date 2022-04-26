@@ -45,6 +45,15 @@ $('#container').on('click', function(targ) {
         }
         location.reload();
     }
+
+    if (targ.target && targ.target.matches('.clear')) {
+        localStorage.clear();
+
+        // Loops over all userInput fields and clears them
+        for (var i = 0; i < userInput.length; i++) {
+            userInput[i].textContent = "";
+        }
+    }
 })
 
 // Grabs local storage items and renders it onto the userInput box
@@ -55,6 +64,7 @@ function renderInput() {
 
         // Getting the userInput local storage item based on the current field input block value
         userInputValue = localStorage.getItem('userInput' + userInputBlock)
+
         // If the current item in the local storage doesn't exist, skip current iteration.
         if (userInputValue === undefined || userInputValue === null) {
             continue;
@@ -77,7 +87,7 @@ function currentHour() {
         // If the current timeblock is the past
         } else if (parseInt(timeBlock[i].dataset.hour) < currentMilitaryTime) {
             timeBlock[i].setAttribute('id', 'past');
-            console.log(parseInt(timeBlock[i].dataset.hour))
+
         // If the current timeblock is the future
         } else if (parseInt(timeBlock[i].dataset.hour) > currentMilitaryTime) {
             timeBlock[i].setAttribute('id', 'future');
@@ -91,6 +101,7 @@ function toMilitaryTime() {
     if (grabCurrentHour.slice(-2) === 'pm' && grabCurrentHour.slice(0, 1) !== '12') {
         let militaryHour = parseInt(grabCurrentHour.slice(0, 1)) + 12;
         return militaryHour
+    // If the current hour is 12 am
     } else if (grabCurrentHour.slice(-2) === 'am' && grabCurrentHour.slice(0, 1) === '12') {
         let militaryHour = 0;
         return militaryHour
