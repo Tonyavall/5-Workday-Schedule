@@ -53,6 +53,7 @@ $('#container').on('click', function(targ) {
         for (var i = 0; i < userInput.length; i++) {
             userInput[i].textContent = "";
         }
+        location.reload();
     }
 })
 
