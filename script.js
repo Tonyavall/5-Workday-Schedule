@@ -20,7 +20,6 @@ let timeBlock = document.querySelectorAll('.time-block')
 // console.log(timeBlock)
 
 renderInput();
-currentHour();
 
 // Using jquery to set the currentDay text content to grabCurrentDate
 $('#currentDay').text(grabCurrentDate);
@@ -70,7 +69,6 @@ function renderInput() {
         if (userInputValue === undefined || userInputValue === null) {
             continue;
         }
-
         // Setting the text content of current input field
         userInput[i].textContent = userInputValue;
     };
@@ -84,21 +82,7 @@ let militaryHour = parseInt(grabCurrentHour.slice(0, 2));
 switch (grabCurrentHour) {
     case '12 am':
         militaryHour = 0;
-        console.log('It is currently ' + militaryHour + ' hours')
-        break;
-    case '1 am':
-    case '2 am':
-    case '3 am':
-    case '4 am':
-    case '5 am':
-    case '6 am':
-    case '7 am':
-    case '8 am':
-    case '9 am':
-    case '10 am':
-    case '11 am':
-    case '12 pm':
-        console.log('It is currently ' + militaryHour + ' hours')
+        console.log('It is currently ' + militaryHour + ' hours');
         break;
     case '1 pm':
     case '2 pm':
@@ -115,58 +99,31 @@ switch (grabCurrentHour) {
         militaryHour += 12;
         console.log('It is currently ' + militaryHour + ' hours')
         break;
+    // The default statement for 1-11am
+    default:
+        console.log('It is currently ' + militaryHour + ' hours');
 }
 
-  // Function that was replaced by above
-// // Function that converts the current grabbed hour to military time
-// function toMilitaryTime() {
-//     // If the current hour is PM and not 12 
-//     if (grabCurrentHour.slice(-2) === 'pm' && grabCurrentHour.slice(0, 1) !== '12') {
-//         let militaryHour = parseInt(grabCurrentHour.slice(0, 1)) + 12;
-//         return militaryHour
-//     // If the current hour is 12 am
-//     } else if (grabCurrentHour.slice(-2) === 'am' && grabCurrentHour.slice(0, 1) === '12') {
-//         let militaryHour = 0;
-//         return militaryHour
-//     } else if (grabCurrentHour.slice(-2) === 'pm' && grabCurrentHour.slice(0, 1) === '12') {
-//         let militaryHour = 12;
-//         return militaryHour
-//     };
-// }
-
+// Needs to be initiated after switch statements
 currentHour();
 
 // function that sets the classes of each timeblock depending on what time it is
 function currentHour() {
-    let currentMilitaryTime = toMilitaryTime()
     // Loops over the time blocks and sets classes past future or present
     for (var i = 0; i < timeBlock.length; i++) {
         // If the current hour timeblock is the present
-        if (parseInt(timeBlock[i].dataset.hour) === currentMilitaryTime) {
+        if (parseInt(timeBlock[i].dataset.hour) === militaryHour) {
             timeBlock[i].setAttribute('id', 'present');
             
         // If the current timeblock is the past
-        } else if (parseInt(timeBlock[i].dataset.hour) < currentMilitaryTime) {
+        } else if (parseInt(timeBlock[i].dataset.hour) < militaryHour) {
             timeBlock[i].setAttribute('id', 'past');
 
         // If the current timeblock is the future
-        } else if (parseInt(timeBlock[i].dataset.hour) > currentMilitaryTime) {
+        } else if (parseInt(timeBlock[i].dataset.hour) > militaryHour) {
             timeBlock[i].setAttribute('id', 'future');
+        } else {
+            console.log('currentHour() needs added conditions')
         }
     }
-}
-
-// Function that converts the current grabbed hour to military time
-function toMilitaryTime() {
-    // If the current hour is PM and not 12 
-    if (grabCurrentHour.slice(-2) === 'pm' && grabCurrentHour.slice(0, 1) !== '12') {
-        let militaryHour = parseInt(grabCurrentHour.slice(0, 1)) + 12;
-        return militaryHour
-    // If the current hour is 12 am
-    } else if (grabCurrentHour.slice(-2) === 'am' && grabCurrentHour.slice(0, 1) === '12') {
-        let militaryHour = 0;
-        return militaryHour
-    } else {
-        console.log("The current time is not any of the 2 conditions, fix me")
-    };
 }
