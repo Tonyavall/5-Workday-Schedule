@@ -102,6 +102,7 @@ switch (grabCurrentHour) {
     // The default statement for 1-11am
     default:
         console.log('It is currently ' + militaryHour + ' hours');
+        break;
 }
 
 // Needs to be initiated after switch statements
