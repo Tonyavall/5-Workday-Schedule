@@ -95,7 +95,6 @@ switch (grabCurrentHour) {
     case '9 pm':
     case '10 pm':
     case '11 pm':
-    case '12 pm':
         militaryHour += 12;
         console.log('It is currently ' + militaryHour + ' hours')
         break;
